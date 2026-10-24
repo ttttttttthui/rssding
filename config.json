@@ -23,6 +23,7 @@
     "健身", "美食", "旅游", "星座", "宠物"
   ],
   "max_new_per_run": 20,
+  "max_age_hours": 24,
   "max_seen_per_feed": 200,
   "request_timeout": 15,
   "user_agent": "Mozilla/5.0 (compatible; news-pusher/1.0)"

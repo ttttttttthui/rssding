@@ -185,6 +185,7 @@ def main():
     state = load_state()
     seen = state.setdefault("seen", {})
     max_new = int(config.get("max_new_per_run", 20))
+    max_age = float(config.get("max_age_hours", 0)) * 3600
     max_seen = int(config.get("max_seen_per_feed", 200))
     timeout = int(config.get("request_timeout", 15))
     user_agent = config.get("user_agent", "news-pusher/1.0")
@@ -210,6 +211,10 @@ def main():
             if not guid or guid in seen_guids:
                 continue
             fresh_count += 1
+            pub_ts = parse_time(pub)
+            if max_age and pub_ts and time.time() - pub_ts > max_age:
+                dropped.append((url, guid))
+                continue
             if link and link in queued_links:
                 dropped.append((url, guid))
                 continue
@@ -231,7 +236,7 @@ def main():
                 if keep_kws and not any(k in display for k in keep_kws):
                     dropped.append((url, guid))
                     continue
-            new_items.append((parse_time(pub), url, name, guid, title, link, display))
+            new_items.append((pub_ts, url, name, guid, title, link, display))
         print(f"[ok] {name}: {len(items)} items, {fresh_count} new")
 
     new_items.sort(key=lambda x: x[0], reverse=True)
