@@ -66,7 +66,7 @@ DD_WEBHOOK=x DD_SECRET=y python3 news_pusher.py --dry-run   # 只打印不推送
 
 | 字段 | 说明 |
 |---|---|
-| `feeds` | 订阅源列表，`name` 显示名 + `url` 地址（支持 RSS 2.0 和 Atom），可自由增删。特殊源需加 `type`：`"type": "sina_roll"` 表示新浪财经滚动 JSON 接口（`params` 为接口参数，见 config.json 示例）。`"translate": true` 表示该源标题自动翻译为中文（走 Google 免费接口，翻译失败自动降级为原文） |
+| `feeds` | 订阅源列表，`name` 显示名 + `url` 地址（支持 RSS 2.0 和 Atom），可自由增删。特殊源需加 `type`：`"sina_roll"` 新浪财经滚动接口；`"json_list"` 通用 JSON 列表接口（`path` 点分路径、`title_field`/`link_field`/`time_field` 字段名、`link_template` 链接模板、`time_type`: `epoch`/`ymd_hms_bj`/`rfc2822`）。`"translate": true` 表示该源标题自动翻译为中文（走 Google 免费接口，翻译失败自动降级为原文） |
 | `keep_keywords` | 命中任一关键词才推送（国际源匹配译文）；空列表 = 不过滤 |
 | `drop_keywords` | 命中任一关键词直接丢弃（优先级高于 keep）；被丢弃条目同样记入去重库 |
 | `max_new_per_run` | 单次最多推送条数（防刷屏，超出部分下轮继续推） |
