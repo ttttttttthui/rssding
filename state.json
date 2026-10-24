@@ -23,7 +23,8 @@
       "https://www.theguardian.com/politics/commentisfree/audio/2026/oct/24/culture-is-stagnant-so-politics-is-stuck-playwright-james-graham-radical-thinking-podcast",
       "https://www.theguardian.com/business/2026/oct/24/more-than-third-of-post-offices-in-tg-jones-stores-to-shut-by-early-2027",
       "https://www.theguardian.com/world/2026/oct/24/spain-diners-food-restaurants-menu-del-dia",
-      "https://www.theguardian.com/news/ng-interactive/2026/oct/24/divided-israel-election-benjamin-netanyahu"
+      "https://www.theguardian.com/news/ng-interactive/2026/oct/24/divided-israel-election-benjamin-netanyahu",
+      "https://www.theguardian.com/world/2026/oct/24/seven-killed-and-40-injured-after-gunmen-open-fire-at-church-funeral-in-jordan"
     ],
     "https://www.aljazeera.com/xml/rss/all.xml": [
       "https://www.aljazeera.com/?t=1792831403",
@@ -49,7 +50,8 @@
       "https://www.aljazeera.com/?t=1792774480",
       "https://www.aljazeera.com/?t=1792502256",
       "https://www.aljazeera.com/?t=1792772764",
-      "https://www.aljazeera.com/?t=1792144352"
+      "https://www.aljazeera.com/?t=1792144352",
+      "https://www.aljazeera.com/?t=1792816812"
     ],
     "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml": [
       "https://www.nytimes.com/2026/10/24/briefing/outside-chance.html",
@@ -59,7 +61,8 @@
       "https://www.nytimes.com/2026/10/24/climate/takeaways-trump-waivers-chemical-pollution.html",
       "https://www.nytimes.com/2026/10/24/climate/trump-epa-chemical-air-pollution.html",
       "https://www.nytimes.com/2026/10/24/us/politics/fishing-immigration-trump.html",
-      "https://www.nytimes.com/2026/10/23/us/justice-dept-california-noncitizen-voters.html"
+      "https://www.nytimes.com/2026/10/23/us/justice-dept-california-noncitizen-voters.html",
+      "https://www.nytimes.com/2026/10/24/us/archdiocese-new-york-sexual-abuse-settlement.html"
     ],
     "https://feeds.npr.org/1001/rss.xml": [
       "https://www.npr.org/2026/10/24/nx-s1-6014612/medicare-advantage-open-enrollment-cancelled-plan",
@@ -70,14 +73,26 @@
     "https://www.france24.com/en/rss": [
       "a34bfd90-cf8d-11f1-907d-edaeb4482680",
       "14f20fcc-cf78-11f1-8544-a5eb1a431025",
-      "4c181a5e-cf6a-11f1-bad6-59366f9de0ec"
+      "4c181a5e-cf6a-11f1-bad6-59366f9de0ec",
+      "8e6a11b2-cf94-11f1-9702-cbb28020d51e",
+      "9ecc4a92-cf95-11f1-994d-bd6bb226dc91",
+      "fab3c510-cf95-11f1-b25f-45bbb0637d0b",
+      "1e310b16-cf95-11f1-802e-e5a767e997ae",
+      "59135770-cf95-11f1-bf43-fb05bf2af37f",
+      "e0ef2102-cf94-11f1-a0aa-e11101fccbc6",
+      "c3f41fe0-cf66-11f1-98bb-fb81c9e947ed"
     ],
     "http://www.chinanews.com.cn/rss/finance.xml": [
       "https://www.chinanews.com.cn/cj/2026/10-24/10720387.shtml",
       "https://www.chinanews.com.cn/cj/2026/10-24/10720382.shtml",
       "https://www.chinanews.com.cn/cj/2026/10-24/10720344.shtml",
       "https://www.chinanews.com.cn/cj/2026/10-24/10720371.shtml",
-      "https://www.chinanews.com.cn/cj/2026/10-24/10720360.shtml"
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720360.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720310.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720313.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720300.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720282.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720261.shtml"
     ],
     "https://feed.mix.sina.com.cn/api/roll/get": [
       "https://finance.sina.com.cn/china/2026-10-24/doc-iniwiqmh7907000.shtml",
@@ -96,7 +111,12 @@
       "https://www.chinanews.com.cn/gj/2026/10-24/10720335.shtml",
       "https://www.chinanews.com.cn/sh/2026/10-24/10720330.shtml",
       "https://www.chinanews.com.cn/sh/2026/10-24/10720324.shtml",
-      "https://www.chinanews.com.cn/sh/2026/10-24/10720311.shtml"
+      "https://www.chinanews.com.cn/sh/2026/10-24/10720311.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720310.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-24/10720313.shtml",
+      "https://www.chinanews.com.cn/sh/2026/10-24/10720309.shtml",
+      "https://www.chinanews.com.cn/ydyl/2026/10-24/10720267.shtml",
+      "http://www.chinanews.com.cn/cj/shipin/cns-d/2026/10-24/news1072840.shtml"
     ]
   }
 }
