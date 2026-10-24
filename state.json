@@ -24,7 +24,9 @@
       "https://www.bbc.co.uk/news/videos/ck5yn9dqnqj7o#2",
       "https://www.bbc.co.uk/news/articles/cxyvrged14d0o#3",
       "https://www.bbc.co.uk/news/articles/ck4g1jg4n9dno#3",
-      "https://www.bbc.co.uk/news/articles/cmwyqn6ejyd4o#3"
+      "https://www.bbc.co.uk/news/articles/cmwyqn6ejyd4o#3",
+      "https://www.bbc.co.uk/news/videos/c8x23gegwz34o#2",
+      "https://www.bbc.co.uk/news/videos/cm5ynpz5jj5do#2"
     ],
     "https://www.theguardian.com/world/rss": [
       "https://www.theguardian.com/world/live/2026/oct/24/france-demonstrations-police-macron-italy-albania-belgium-spain-ukraine-russia-europe-latest-news",
@@ -68,7 +70,10 @@
       "https://www.theguardian.com/business/2026/oct/20/mukesh-ambani-jio-platforms-ipo-india-stock-market",
       "https://www.theguardian.com/world/2026/oct/19/this-is-india-student-protests-abuse-modi-cockroach-protests",
       "https://www.theguardian.com/us-news/2026/oct/23/california-ballots-trump",
-      "https://www.theguardian.com/us-news/2026/oct/23/pentagon-china-hegseth"
+      "https://www.theguardian.com/us-news/2026/oct/23/pentagon-china-hegseth",
+      "https://www.theguardian.com/business/2026/oct/23/oil-five-month-high-fears-us-renews-strikes-iran",
+      "https://www.theguardian.com/news/audio/2026/oct/23/brazil-election-battle-for-amazon-podcast",
+      "https://www.theguardian.com/world/2026/oct/23/magnitude-7-earthquake-hits-china-tibet"
     ],
     "https://www.aljazeera.com/xml/rss/all.xml": [
       "https://www.aljazeera.com/?t=1792831403",
@@ -95,7 +100,8 @@
       "https://www.aljazeera.com/?t=1792502256",
       "https://www.aljazeera.com/?t=1792772764",
       "https://www.aljazeera.com/?t=1792144352",
-      "https://www.aljazeera.com/?t=1792816812"
+      "https://www.aljazeera.com/?t=1792816812",
+      "https://www.aljazeera.com/?t=1792819032"
     ],
     "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml": [
       "https://www.nytimes.com/2026/10/24/briefing/outside-chance.html",
@@ -148,7 +154,11 @@
       "3c18e22a-ceff-11f1-8c9d-39db931d1867",
       "f0a1d4d0-cef6-11f1-ac7e-8f6e4b6af7d6",
       "292a3e12-cef4-11f1-9d05-d19f7e65e183",
-      "cbff6ccc-cef2-11f1-9794-2bb3a7226ba0"
+      "cbff6ccc-cef2-11f1-9794-2bb3a7226ba0",
+      "f25a53be-cef7-11f1-9b67-fd117c779604",
+      "6bcb034a-cf04-11f1-923e-4125f580d588",
+      "55569ad4-cc70-11f1-bde3-7d1b056370b1",
+      "054e8c2c-cc75-11f1-acb5-3b7f00743c97"
     ],
     "http://www.chinanews.com.cn/rss/finance.xml": [
       "https://www.chinanews.com.cn/cj/2026/10-24/10720387.shtml",
@@ -179,7 +189,8 @@
       "https://www.chinanews.com.cn/cj/2026/10-23/10720127.shtml",
       "https://www.chinanews.com.cn/cj/2026/10-23/10720124.shtml",
       "https://www.chinanews.com.cn/cj/2026/10-23/10720123.shtml",
-      "https://www.chinanews.com.cn/cj/2026/10-23/10720120.shtml"
+      "https://www.chinanews.com.cn/cj/2026/10-23/10720120.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-23/10720118.shtml"
     ],
     "https://feed.mix.sina.com.cn/api/roll/get": [
       "https://finance.sina.com.cn/china/2026-10-24/doc-iniwiqmh7907000.shtml",
@@ -220,7 +231,8 @@
       "https://www.chinanews.com.cn/cj/2026/10-23/10719988.shtml",
       "https://www.chinanews.com.cn/gn/2026/10-23/10719904.shtml",
       "https://www.chinanews.com.cn/gj/2026/10-23/10719809.shtml",
-      "https://www.chinanews.com.cn/gj/2026/10-23/10719754.shtml"
+      "https://www.chinanews.com.cn/gj/2026/10-23/10719754.shtml",
+      "https://www.chinanews.com.cn/cj/2026/10-23/10719877.shtml"
     ],
     "https://www.cnbc.com/id/100003114/device/rss/rss.html": [
       "108452461",
@@ -250,7 +262,9 @@
       "108438078",
       "108450569",
       "108432568",
-      "108450570"
+      "108450570",
+      "108436951",
+      "108447190"
     ]
   }
 }
