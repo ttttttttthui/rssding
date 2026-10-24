@@ -78,5 +78,5 @@ DD_WEBHOOK=x DD_SECRET=y python3 news_pusher.py --dry-run   # 只打印不推送
 
 - **时间不对？** GitHub Actions 的 runner 是 UTC 时区，消息头时间是 UTC。本机模式显示本地时间。
 - **定时延迟？** GitHub 官方说明高负载时定时任务可能延迟几分钟，属正常现象。
-- **想改频率？** 改 `.github/workflows/news-pusher.yml` 里的 cron 表达式（当前 `0 */12 * * *` 为每 12 小时一次，UTC 时间 = 北京时间 8:00 和 20:00；GitHub 支持的最短间隔为 5 分钟）。
+- **想改频率？** 改 `.github/workflows/news-pusher.yml` 里的 cron 表达式（当前 `0 0,4,8,12 * * *` 为每天 4 次：北京时间 8:00 / 12:00 / 16:00 / 20:00；GitHub 支持的最短间隔为 5 分钟）。
 - **推送重复了？** 检查钉钉机器人安全设置是否为「加签」，以及 secrets 是否填对。

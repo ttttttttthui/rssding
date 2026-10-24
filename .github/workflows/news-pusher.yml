@@ -2,7 +2,7 @@ name: news-pusher
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 0,4,8,12 * * *'
   workflow_dispatch: {}
 
 permissions:
