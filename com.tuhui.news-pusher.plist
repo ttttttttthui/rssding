@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.tuhui.news-pusher</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/python3</string>
+        <string>/Users/tuhui/Downloads/rea/news-pusher/news_pusher.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/tuhui/Downloads/rea/news-pusher</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>DD_WEBHOOK</key>
+        <string>REPLACE_WITH_YOUR_WEBHOOK</string>
+        <key>DD_SECRET</key>
+        <string>REPLACE_WITH_YOUR_SECRET</string>
+    </dict>
+    <key>StartInterval</key>
+    <integer>300</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/news-pusher.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/news-pusher.err</string>
+</dict>
+</plist>
