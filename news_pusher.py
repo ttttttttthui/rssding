@@ -158,6 +158,16 @@ def push_to_dingtalk(webhook, secret, text, dry_run):
     return True
 
 
+def mark_seen(state, entries, max_seen):
+    for url, guid in entries:
+        lst = state["seen"].setdefault(url, [])
+        if guid not in lst:
+            lst.append(guid)
+    for url in state["seen"]:
+        if len(state["seen"][url]) > max_seen:
+            state["seen"][url] = state["seen"][url][-max_seen:]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -178,8 +188,12 @@ def main():
     max_seen = int(config.get("max_seen_per_feed", 200))
     timeout = int(config.get("request_timeout", 15))
     user_agent = config.get("user_agent", "news-pusher/1.0")
+    keep_kws = config.get("keep_keywords", [])
+    drop_kws = config.get("drop_keywords", [])
 
     new_items = []
+    dropped = []
+    queued_links = set()
     for feed in config["feeds"]:
         name, url = feed["name"], feed["url"]
         try:
@@ -191,41 +205,62 @@ def main():
             print(f"[skip] {name}: {e}")
             continue
         seen_guids = set(seen.get(url, []))
+        fresh_count = 0
         for guid, title, link, pub in items:
-            if guid and guid not in seen_guids:
-                new_items.append(
-                    (parse_time(pub), url, name, guid, title, link,
-                     feed.get("translate", False))
-                )
-        print(f"[ok] {name}: {len(items)} items, "
-              f"{sum(1 for g, *_ in items if g and g not in seen_guids)} new")
+            if not guid or guid in seen_guids:
+                continue
+            fresh_count += 1
+            if link and link in queued_links:
+                dropped.append((url, guid))
+                continue
+            if link:
+                queued_links.add(link)
+            do_translate = feed.get("translate", False)
+            display = title
+            fail_open = False
+            if do_translate:
+                translated = translate_title(title, timeout, user_agent)
+                if translated != title:
+                    display = translated
+                else:
+                    fail_open = True
+            if not fail_open:
+                if any(k in display for k in drop_kws):
+                    dropped.append((url, guid))
+                    continue
+                if keep_kws and not any(k in display for k in keep_kws):
+                    dropped.append((url, guid))
+                    continue
+            new_items.append((parse_time(pub), url, name, guid, title, link, display))
+        print(f"[ok] {name}: {len(items)} items, {fresh_count} new")
 
     new_items.sort(key=lambda x: x[0], reverse=True)
     batch = new_items[:max_new]
+    save_dropped = not args.dry_run and dropped
 
     if not batch:
-        print("no new headlines")
+        if save_dropped:
+            mark_seen(state, dropped, max_seen)
+            save_state(state)
+        print(f"no new headlines ({len(dropped)} dropped)")
         return 0
 
     lines = [f"### 新闻头条 {time.strftime('%Y-%m-%d %H:%M:%S')}", ""]
-    for _, _, name, _, title, link, do_translate in batch:
-        show = translate_title(title, timeout, user_agent) if do_translate else title
-        lines.append(f"- **{name}** [{show}]({link})" if link else f"- **{name}** {show}")
+    for _, _, name, _, _, link, display in batch:
+        lines.append(f"- **{name}** [{display}]({link})" if link else f"- **{name}** {display}")
     text = "\n".join(lines)
 
     if not push_to_dingtalk(webhook, secret, text, args.dry_run):
+        if save_dropped:
+            mark_seen(state, dropped, max_seen)
+            save_state(state)
         return 1
 
     if not args.dry_run:
-        for _, url, _, guid, _, _, _ in batch:
-            lst = seen.setdefault(url, [])
-            if guid not in lst:
-                lst.append(guid)
-        for url in seen:
-            if len(seen[url]) > max_seen:
-                seen[url] = seen[url][-max_seen:]
+        mark_seen(state, [(url, guid) for _, url, _, guid, *_ in batch], max_seen)
+        mark_seen(state, dropped, max_seen)
         save_state(state)
-        print(f"pushed {len(batch)} new headline(s)")
+        print(f"pushed {len(batch)} new headline(s), {len(dropped)} dropped")
     return 0
 
 
