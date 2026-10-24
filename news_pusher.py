@@ -8,6 +8,7 @@ seen, so a failed push is retried on the next run.
 
 import argparse
 import base64
+import calendar
 import hashlib
 import hmac
 import json
@@ -17,6 +18,7 @@ import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from email.utils import parsedate_to_datetime
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -115,6 +117,56 @@ def translate_title(text, timeout, user_agent):
         return text
 
 
+def fetch_json_list(feed, timeout, user_agent):
+    """Generic JSON list source driven by config fields.
+
+    Config keys: path (dot-separated, e.g. "data.fastNewsList"), title_field,
+    link_field, link_template (optional, "{}" = link_field value), time_field,
+    time_type: "epoch" (unix seconds) | "ymd_hms_bj" (Beijing time string)
+    | anything else (RFC2822 passthrough).
+    """
+    params = dict(feed.get("params", {}))
+    url = feed["url"] + "?" + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"User-Agent": user_agent})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+    for key in feed.get("path", "").split("."):
+        if not key or not isinstance(data, dict):
+            break
+        data = data.get(key)
+    if not isinstance(data, list):
+        raise ValueError(f"path {feed.get('path')!r} did not resolve to a list")
+
+    items = []
+    title_field = feed.get("title_field", "title")
+    link_field = feed.get("link_field", "url")
+    time_field = feed.get("time_field", "")
+    time_type = feed.get("time_type", "rfc2822")
+    link_template = feed.get("link_template", "")
+    for it in data:
+        title = str(it.get(title_field, "") or "").strip()
+        if not title:
+            continue
+        raw_link = str(it.get(link_field, "") or "")
+        link = link_template.format(raw_link) if link_template else raw_link
+        pub = ""
+        raw_time = it.get(time_field, "") if time_field else ""
+        if raw_time:
+            if time_type == "epoch":
+                pub = time.strftime("%a, %d %b %Y %H:%M:%S GMT", time.gmtime(int(raw_time)))
+            elif time_type == "ymd_hms_bj":
+                try:
+                    dt = datetime.strptime(str(raw_time), "%Y-%m-%d %H:%M:%S")
+                    utc_ts = calendar.timegm(dt.timetuple()) - 8 * 3600
+                    pub = time.strftime("%a, %d %b %Y %H:%M:%S GMT", time.gmtime(utc_ts))
+                except ValueError:
+                    pub = ""
+            else:
+                pub = str(raw_time)
+        items.append((link or title, title, link, pub))
+    return items
+
+
 def parse_time(raw):
     if not raw:
         return 0.0
@@ -200,6 +252,8 @@ def main():
         try:
             if feed.get("type") == "sina_roll":
                 items = fetch_sina_roll(feed, timeout, user_agent)
+            elif feed.get("type") == "json_list":
+                items = fetch_json_list(feed, timeout, user_agent)
             else:
                 items = parse_feed(fetch_feed(url, timeout, user_agent))
         except Exception as e:

@@ -8,7 +8,9 @@
     {"name": "The Guardian", "translate": true, "url": "https://www.theguardian.com/world/rss"},
     {"name": "Al Jazeera", "translate": true, "url": "https://www.aljazeera.com/xml/rss/all.xml"},
     {"name": "中新网财经", "url": "http://www.chinanews.com.cn/rss/finance.xml"},
-    {"name": "中新网要闻", "url": "http://www.chinanews.com.cn/rss/importnews.xml"}
+    {"name": "中新网要闻", "url": "http://www.chinanews.com.cn/rss/importnews.xml"},
+    {"name": "东方财富7x24", "type": "json_list", "url": "https://np-weblist.eastmoney.com/comm/web/getFastNewsList", "params": {"client": "web", "biz": "web_724", "fastColumn": "102", "sortEnd": "", "pageSize": "50", "req_trace": "1"}, "path": "data.fastNewsList", "title_field": "title", "link_field": "code", "link_template": "https://finance.eastmoney.com/a/{}.html", "time_field": "showTime", "time_type": "ymd_hms_bj"},
+    {"name": "同花顺快讯", "type": "json_list", "url": "https://news.10jqka.com.cn/tapp/news/push/stock/", "params": {"page": "1", "track": "website", "pagesize": "50"}, "path": "data.list", "title_field": "title", "link_field": "url", "time_field": "ctime", "time_type": "epoch"}
   ],
   "keep_keywords": [
     "加息", "降息", "利率", "美联储", "央行", "通胀", "CPI", "GDP", "衰退",
