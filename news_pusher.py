@@ -98,6 +98,23 @@ def fetch_sina_roll(feed, timeout, user_agent):
     return items
 
 
+def translate_title(text, timeout, user_agent):
+    """Translate via Google's free web endpoint; return original on failure."""
+    url = (
+        "https://translate.googleapis.com/translate_a/single"
+        "?client=gtx&sl=auto&tl=zh-CN&dt=t&q=" + urllib.parse.quote(text)
+    )
+    req = urllib.request.Request(url, headers={"User-Agent": user_agent})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+        translated = "".join(seg[0] for seg in data[0] if seg and seg[0])
+        return translated or text
+    except Exception as e:
+        print(f"translate failed for '{text[:40]}': {e}")
+        return text
+
+
 def parse_time(raw):
     if not raw:
         return 0.0
@@ -176,7 +193,10 @@ def main():
         seen_guids = set(seen.get(url, []))
         for guid, title, link, pub in items:
             if guid and guid not in seen_guids:
-                new_items.append((parse_time(pub), url, name, guid, title, link))
+                new_items.append(
+                    (parse_time(pub), url, name, guid, title, link,
+                     feed.get("translate", False))
+                )
         print(f"[ok] {name}: {len(items)} items, "
               f"{sum(1 for g, *_ in items if g and g not in seen_guids)} new")
 
@@ -188,15 +208,16 @@ def main():
         return 0
 
     lines = [f"### 新闻头条 {time.strftime('%Y-%m-%d %H:%M:%S')}", ""]
-    for _, _, name, _, title, link in batch:
-        lines.append(f"- **{name}** [{title}]({link})" if link else f"- **{name}** {title}")
+    for _, _, name, _, title, link, do_translate in batch:
+        show = translate_title(title, timeout, user_agent) if do_translate else title
+        lines.append(f"- **{name}** [{show}]({link})" if link else f"- **{name}** {show}")
     text = "\n".join(lines)
 
     if not push_to_dingtalk(webhook, secret, text, args.dry_run):
         return 1
 
     if not args.dry_run:
-        for _, url, _, guid, _, _ in batch:
+        for _, url, _, guid, _, _, _ in batch:
             lst = seen.setdefault(url, [])
             if guid not in lst:
                 lst.append(guid)

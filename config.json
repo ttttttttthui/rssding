@@ -1,11 +1,11 @@
 {
   "feeds": [
-    {"name": "BBC World", "url": "https://feeds.bbci.co.uk/news/world/rss.xml"},
-    {"name": "NPR", "url": "https://feeds.npr.org/1001/rss.xml"},
-    {"name": "France24", "url": "https://www.france24.com/en/rss"},
-    {"name": "NYT", "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"},
-    {"name": "The Guardian", "url": "https://www.theguardian.com/world/rss"},
-    {"name": "Al Jazeera", "url": "https://www.aljazeera.com/xml/rss/all.xml"},
+    {"name": "BBC World", "translate": true, "url": "https://feeds.bbci.co.uk/news/world/rss.xml"},
+    {"name": "NPR", "translate": true, "url": "https://feeds.npr.org/1001/rss.xml"},
+    {"name": "France24", "translate": true, "url": "https://www.france24.com/en/rss"},
+    {"name": "NYT", "translate": true, "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"},
+    {"name": "The Guardian", "translate": true, "url": "https://www.theguardian.com/world/rss"},
+    {"name": "Al Jazeera", "translate": true, "url": "https://www.aljazeera.com/xml/rss/all.xml"},
     {"name": "中新网财经", "url": "http://www.chinanews.com.cn/rss/finance.xml"},
     {"name": "中新网要闻", "url": "http://www.chinanews.com.cn/rss/importnews.xml"},
     {"name": "新浪财经", "type": "sina_roll", "url": "https://feed.mix.sina.com.cn/api/roll/get", "params": {"pageid": "153", "lid": "2516", "num": "20"}}
